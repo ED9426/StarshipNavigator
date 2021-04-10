@@ -11,6 +11,8 @@ import java.util.*;
 
 public class Graph<T> implements GraphADT<T> {
 
+
+
     /**
      * Vertex objects group a data field with an adjacency list of weighted
      * directed edges that lead away from them.
@@ -332,6 +334,37 @@ public class Graph<T> implements GraphADT<T> {
         return res; // TODO: Implement this method in Step 7.
     }
 
+    protected Path BFSshortestPath(T start, T end) {
+        Vertex vStart, vEnd;
+        if (start == null || end == null) throw new NoSuchElementException("No null node");
+        if (this.vertices.containsKey(start)) {
+            vStart = this.vertices.get(start);
+        } else throw new NoSuchElementException("No such starting node " + start);
+        if (this.vertices.containsKey(end)) {
+            vEnd = this.vertices.get(end);
+        } else throw new NoSuchElementException("No such ending node " + end);
+        Path res = null;
+        Stack<Path> frontier = new Stack<>();
+        frontier.add(new Path(vStart));
+
+        while (frontier.size() != 0) {
+            Path curr = frontier.pop();
+            Vertex vGoing = curr.end;
+            if (vGoing == vEnd) {
+                res = curr;
+                break;
+            }
+            for (Edge e : vGoing.edgesLeaving) {
+                if (!curr.dataSequence.contains(e.target)) {
+                    frontier.add(new Path(curr, e));
+                }
+            }
+        }
+
+        return res;
+    }
+
+
     /**
      * Returns the shortest path between start and end.
      * Uses Dijkstra's shortest path algorithm to find the shortest path.
@@ -344,9 +377,18 @@ public class Graph<T> implements GraphADT<T> {
      *     including when no vertex containing start or end can be found
      */
     public List<T> shortestPath(T start, T end) {
-        System.out.println(dijkstrasShortestPath(start,end).dataSequence);
         return dijkstrasShortestPath(start,end).dataSequence;
     }
+
+
+
+
+    public List<T> BFSPath(T start, T end) {
+        return BFSshortestPath(start,end).dataSequence;
+    }
+
+
+
 
     /**
      * Returns the cost of the path (sum over edge weights) between start and end.

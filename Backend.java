@@ -26,22 +26,23 @@ public class Backend implements BackendInterface{
      * to the Map graph
      */
     public Backend(Reader args) {
-        List<Edge> data = new ArrayList<>();
-        EdgeDataReaderInterface cdr = new EdgeDataReader();
+        List<Vertex> data = new ArrayList<>();
+        VertexDataReaderInterface cdr = new VertexDataReader();
         try {
             data= cdr.readDataSet(args);
         } catch (IOException | DataFormatException e) {
             e.printStackTrace();
         }
         for (int i=0; i<data.size();i++) {
-            // TODO: add the date information into the graph;
             map.insertVertex(data.get(i).getName());
             size++;
         }
         for (int i=0; i<data.size();i++) {
             for (int j= 0; j<data.get(i).connections.size(); j++) {
-                map.insertEdge(data.get(i).getName(),data.get(i).connections.get(j).getName(),data.get(i).weights.get(j));
-                map.insertEdge(data.get(i).connections.get(j).getName(),data.get(i).getName(),data.get(i).weights.get(j));
+                if (!data.get(i).connections.get(j).getName().equals(data.get(i).getName())) {  // avoid the self circling edge
+                    map.insertEdge(data.get(i).getName(),data.get(i).connections.get(j).getName(),data.get(i).weights.get(j));
+                    map.insertEdge(data.get(i).connections.get(j).getName(),data.get(i).getName(),data.get(i).weights.get(j));
+                }
             }
         }
     }
@@ -62,26 +63,34 @@ public class Backend implements BackendInterface{
     }
 
     @Override
-    public Edge addDorm(String a, List<String> neighbors, List<Integer> weights) {
-        return null;
-    }
-
-    @Override
-    public Edge removeDorm(String a) {
+    public boolean addDorm(String a, List<String> neighbors, List<Integer> weights) {
         if (map.containsVertex(a)) {
-            map.removeVertex(a);
+            return false;
+        } else {
+            map.insertVertex(a);
+            for (int i = 0; i < neighbors.size(); i++) {
+                map.insertEdge(a,neighbors.get(i),weights.get(i));
+                map.insertEdge(neighbors.get(i),a,weights.get(i));
+            }
+            return true;
         }
-        return null;
     }
 
     @Override
-    public List<> findCheapestDelivery(String a, String b) {
-        Graph.Path path = map.dijkstrasShortestPath(a,b);
-        return null;
+    public boolean removeDorm(String a) {
+        return map.removeVertex(a);
+
     }
 
     @Override
-    public List<Edge> findFastestDelivery(String a, String b) {
-        return null;
+    public List<String> findCheapestDelivery(String a, String b) {
+        List<String> path = map.shortestPath(a,b);
+        return path;
+    }
+
+    @Override
+    public List<String> findFastestDelivery(String a, String b) {
+        List<String> path = map.BFSPath(a,b);
+        return path;
     }
 }
