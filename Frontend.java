@@ -97,7 +97,28 @@ public class Frontend implements FrontendInterface {
     
   }
   public void runRemoveMode() {
-    
+    String userInput = "";
+    System.out.println("Welcome to remove location mode!");
+    System.out.println("Enter the location you would like to remove. Enter \"x\" to return to base mode.");
+    userInput = sc.next();
+    while (!userInput.equals("x")) {
+      String location = userInput;
+      userInput = sc.nextLine();
+      if (userInput!="") {
+        location+=userInput;
+      }
+      if (!dormitories.contains(location) && !restaurants.contains(location)) {
+        System.out.println(location + " cannot be found.");
+      }
+      else if (this.backend.removeDorm(location)) {
+        System.out.println(location + "was successfully removed.");
+      }
+      else {
+        System.out.println(location + "could not be removed.");
+      }
+      System.out.println("Enter the location you would like to remove. Enter \"x\" to return to base mode.");
+      userInput = sc.next();
+    }
   }
   
   
