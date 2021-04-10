@@ -26,7 +26,7 @@ public class Backend implements BackendInterface{
      * to the Map graph
      */
     public Backend(Reader args) {
-        List<EdgeInterface> data = new ArrayList<>();
+        List<Edge> data = new ArrayList<>();
         EdgeDataReaderInterface cdr = new EdgeDataReader();
         try {
             data= cdr.readDataSet(args);
@@ -35,18 +35,53 @@ public class Backend implements BackendInterface{
         }
         for (int i=0; i<data.size();i++) {
             // TODO: add the date information into the graph;
+            map.insertVertex(data.get(i).getName());
             size++;
+        }
+        for (int i=0; i<data.size();i++) {
+            for (int j= 0; j<data.get(i).connections.size(); j++) {
+                map.insertEdge(data.get(i).getName(),data.get(i).connections.get(j).getName(),data.get(i).weights.get(j));
+                map.insertEdge(data.get(i).connections.get(j).getName(),data.get(i).getName(),data.get(i).weights.get(j));
+            }
         }
     }
 
 
-    @Override
-    public boolean addEdge() {
-        return false;
-    }
 
     @Override
     public int getSize() {
         return size;
+    }
+
+    @Override
+    public boolean isDorm(String a) {
+        if (map.containsVertex(a)) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public Edge addDorm(String a, List<String> neighbors, List<Integer> weights) {
+        return null;
+    }
+
+    @Override
+    public Edge removeDorm(String a) {
+        if (map.containsVertex(a)) {
+            map.removeVertex(a);
+        }
+        return null;
+    }
+
+    @Override
+    public List<> findCheapestDelivery(String a, String b) {
+        Graph.Path path = map.dijkstrasShortestPath(a,b);
+        return null;
+    }
+
+    @Override
+    public List<Edge> findFastestDelivery(String a, String b) {
+        return null;
     }
 }
