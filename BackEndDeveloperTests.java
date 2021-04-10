@@ -17,6 +17,10 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 public class BackEndDeveloperTests {
 
+    /**
+     * @throws FileNotFoundException throw an exception if the file doesn't exist.
+     * Test if the isDorm function works.
+     */
     @Test
     public void testisDorm() throws FileNotFoundException {
         Backend b=new Backend(new FileReader("./Starship.csv"));
