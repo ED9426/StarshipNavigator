@@ -33,10 +33,46 @@ public class Frontend implements FrontendInterface {
   public void runBaseMode() {
     String userInput = "";
     System.out.println("Welcome to the Starship Ordering Service!");
+    
+    System.out.println("Enter \"S\" to enter search location mode.");
     System.out.println("Enter \"R\" to enter remove unwanted location mode.");
     System.out.println("Enter \"A\" to enter desire location mode.");
     System.out.println("Enter \"E\" to enter expected time mode");
     System.out.println("Enter \"P\" to enter show path taken mode");
     System.out.println("Enter \"x\" to quit.");
+    while (!userInput.equals("x")) {
+      userInput = sc.next();
+      if (userInput.equals("S") || userInput.equals("R") || userInput.equals("A") || userInput.equals("E") || userInput.equals("P")) {
+        if (userInput.equals("S")) {
+          runSearchMode();
+        } else if (userInput.equals("R")) {
+          runRemoveMode();
+        } else if (userInput.equals("A")) {
+          runAddMode();
+        } else if (userInput.equals("E")) {
+          runTimeMode();
+        } else if (userInput.equals("P")) {
+          runPathMode();
+        } else if (userInput.equals("x")) {
+            break;
+        }
+      } 
+    }
+  }
+  
+  public void runSearchMode() {
+    
+  }
+  public void runRemoveMode() {
+    
+  }
+  public void runAddMode() {
+    
+  }
+  public void runTimeMode() {
+    
+  }
+  public void runPathMode() {
+    
   }
 }
