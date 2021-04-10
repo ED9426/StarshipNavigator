@@ -7,5 +7,37 @@
 // Lecturer: Florian
 // Notes to Grader: <optional extra notes>
 
+import org.junit.jupiter.api.Test;
+
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.StringReader;
+import java.util.List;
+import static org.junit.jupiter.api.Assertions.fail;
+
 public class BackEndDeveloperTests {
+
+    @Test
+    public void testisDorm() throws FileNotFoundException {
+        Backend b=new Backend(new FileReader("./Starship.csv"));
+        if (b.isDorm("something")) {
+            fail("Doesn't exist");
+        }
+        if (!b.isDorm("Adams")) {
+            fail("Adams should be a dorm name");
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

@@ -42,7 +42,7 @@ public class Graph<T> implements GraphADT<T> {
     }
 
     protected Hashtable<T, Vertex> vertices; // holds graph verticies, key=data
-    public void Graph() { vertices = new Hashtable<>(); }
+    public Graph() { vertices = new Hashtable<>(); }
 
     /**
      * Insert a new vertex into the graph.
