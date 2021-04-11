@@ -21,8 +21,6 @@ public class VertexDataReader implements VertexDataReaderInterface {
 			int lines=-1;
 			while ((line = br.readLine()) != null) { // traverse each line
 				String[] values = line.split(","); // split data by comma
-				System.out.print(lines+"--");
-				System.out.println(values.length-1);
 				lines=lines+1;
 				for (int i=1; i<values.length-1; i++) {
 					if (!values[i].equals("")&&(lines!=26&&i!=44))
