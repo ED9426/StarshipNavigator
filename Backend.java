@@ -98,4 +98,8 @@ public class Backend implements BackendInterface{
         List<String> path = map.BFSPath(a,b);
         return path;
     }
+
+    public Integer expectedTime(ArrayList<String> path) {
+        return 10;
+    }
 }
