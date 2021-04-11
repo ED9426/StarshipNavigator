@@ -18,9 +18,8 @@ import java.util.zip.DataFormatException;
  * @author Geng Hui
  */
 public class Backend implements BackendInterface{
-    private Graph<String> map = new Graph();
+    private Graph<String> map;
     private int size=0;
-
     /**
      * The backend constructor method
      * @param args: the reader to read in the file to be added
@@ -48,9 +47,8 @@ public class Backend implements BackendInterface{
         }
     }
 
-    /**
-     * @return return the number of the vertex in the backend
-     */
+
+
     @Override
     public int getSize() {
         return size;
@@ -90,6 +88,11 @@ public class Backend implements BackendInterface{
         return path;
     }
 
+    @Override
+    public int expectedTime(String a, String b) {
+      return map.dijkstrasShortestPath(a, b).distance;
+    }
+    
     @Override
     public List<String> findFastestDelivery(String a, String b) {
         List<String> path = map.BFSPath(a,b);
