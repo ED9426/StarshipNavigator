@@ -212,7 +212,7 @@ public class Frontend implements FrontendInterface {
           throw new NoSuchElementException();
         }
         ArrayList<String> path = new ArrayList<String>(this.backend.findCheapestDelivery(dorm, restaurant));
-        String time = String.valueOf(backend.expectedTime(dorm, restaurant));
+        String time = String.valueOf(backend.expectedTime(path));
         System.out.println("You order from " + restaurant + " will take " + time + " minutes.");
         System.out.print("The path taken will be: ");
         for (int i = 0; i < path.size(); i++) {

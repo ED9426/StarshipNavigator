@@ -7,6 +7,7 @@
 // Lecturer: Florian
 // Notes to Grader: <optional extra notes>
 
+import java.util.ArrayList;
 import java.util.List;
 public interface BackendInterface {
     public int getSize();  // return the nodes number
@@ -15,5 +16,5 @@ public interface BackendInterface {
     public boolean removeDorm(String a); // remove the dorm "a" in the database
     public List<String> findCheapestDelivery(String a, String b); //  calculate the most inexpensive delivery from a to b;
     public List<String> findFastestDelivery(String a, String b); //  calculate the  shortest path  delivery from a to b;
-    public int expectedTime(String a, String b);
+    public int expectedTime(List<String> path);
 }

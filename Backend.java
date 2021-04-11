@@ -9,8 +9,10 @@
 
 import java.io.IOException;
 import java.io.Reader;
+import java.io.StreamCorruptedException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 import java.util.zip.DataFormatException;
 
 /**
@@ -99,7 +101,12 @@ public class Backend implements BackendInterface{
         return path;
     }
 
-    public Integer expectedTime(ArrayList<String> path) {
-        return 10;
+    @Override
+    public int expectedTime(List<String> path) {
+        int time = 0;
+        for (int i = 0; i < path.size()-1; i++) {
+            time += map.getWeight(path.get(i), path.get(i+1));
+        }
+        return time;
     }
 }

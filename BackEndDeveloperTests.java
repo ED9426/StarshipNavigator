@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.StringReader;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -88,18 +89,24 @@ public class BackEndDeveloperTests {
     @Test
     public void testFastest() throws FileNotFoundException {
         Backend b = new Backend(new FileReader("./Starship.csv"));
-        List<String> neighbors = new LinkedList<String>();
-        List<Integer> weights = new LinkedList<>();
-        neighbors.add("Adams");
-        weights.add(20);
-        b.addDorm("Sheboygan", neighbors, weights);
-//        assertTrue(b.findFastestDelivery("Adams", "Sheboygan").size() == 2);
         List<String> newpath = new LinkedList<>();
         newpath.add("Cole");
         newpath.add("Elm & Kronshage");
         newpath.add("Bradley");
         assertEquals(b.findFastestDelivery("Cole", "Bradley"), newpath);
-//        assertTrue(b.findFastestDelivery("Cole", "Bradley").size() == 3);
     }
 
+    /**
+     * @throws FileNotFoundException throw an exception if the file doesn't exist.
+     * Test if the expectedTime function works.
+     */
+    @Test
+    public void testexpectedTime() throws FileNotFoundException {
+        Backend b = new Backend(new FileReader("./Starship.csv"));
+        List<String> newpath = new LinkedList<>();
+        newpath.add("Cole");
+        newpath.add("Elm & Kronshage");
+        newpath.add("Bradley");
+        assertEquals(b.expectedTime(b.findFastestDelivery("Cole", "Bradley")), 4);
+    }
 }
