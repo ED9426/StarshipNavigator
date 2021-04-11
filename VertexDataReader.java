@@ -26,7 +26,7 @@ public class VertexDataReader implements VertexDataReaderInterface {
 				lines=lines+1;
 				for (int i=1; i<values.length-1; i++) {
 					if (!values[i].equals("")&&(lines!=26&&i!=44))
-						edges.get(lines).addConnection(edges.get(i), Integer.parseInt(values[i]));
+						edges.get(lines).addConnection(edges.get(i-1), Integer.parseInt(values[i]));
 				}
 				edges.get(lines).setType(values[values.length-1]);
 			}
