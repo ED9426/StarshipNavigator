@@ -343,19 +343,21 @@ public class Graph<T> implements GraphADT<T> {
         if (this.vertices.containsKey(end)) {
             vEnd = this.vertices.get(end);
         } else throw new NoSuchElementException("No such ending node " + end);
-        Path res = null;
-        Stack<Path> frontier = new Stack<>();
-        frontier.add(new Path(vStart));
 
+        Queue<Path> frontier = new LinkedList<>();
+        HashSet<Vertex> checked = new HashSet<>();
+        frontier.add(new Path(vStart));
+        Path res = null;
         while (frontier.size() != 0) {
-            Path curr = frontier.pop();
+            Path curr = frontier.poll();
             Vertex vGoing = curr.end;
             if (vGoing == vEnd) {
                 res = curr;
                 break;
             }
+            checked.add(vGoing);
             for (Edge e : vGoing.edgesLeaving) {
-                if (!curr.dataSequence.contains(e.target)) {
+                if (!checked.contains(e.target)) {
                     frontier.add(new Path(curr, e));
                 }
             }
