@@ -275,14 +275,22 @@ public class Frontend implements FrontendInterface {
         String time = String.valueOf(backend.expectedTime(path));
         System.out.println("You order from " + restaurant + " will take " + time + " minutes.");
         System.out.print("The path taken will be: ");
-        for (int i = 0; i < path.size(); i++) {
-          if (i < path.size()-1) {
+        for (int i = path.size()-1; i >=0; i--) {
+          if (i != 0) {
             System.out.print(path.get(i) + ", ");
           }
           else {
             System.out.println(path.get(i) + ".");
           }
         }
+//        for (int i = 0; i < path.size(); i++) {
+//          if (i < path.size()-1) {
+//            System.out.print(path.get(i) + ", ");
+//          }
+//          else {
+//            System.out.println(path.get(i) + ".");
+//          }
+//        }
       } catch (NullPointerException | NoSuchElementException | NumberFormatException e) {
         System.out.println("Invalid Input");
       }
@@ -341,18 +349,26 @@ public class Frontend implements FrontendInterface {
         String time = String.valueOf(path.size()*2);
         System.out.println("You order from " + restaurant + " will take " + time + " minutes.");
         System.out.print("The path taken will be: ");
-        for (int i = 0; i < path.size(); i++) {
-          if (i < path.size()-1) {
+        for (int i = path.size()-1; i >=0; i--) {
+          if (i != 0) {
             System.out.print(path.get(i) + ", ");
           }
           else {
             System.out.println(path.get(i) + ".");
           }
         }
+//        for (int i = 0; i < path.size(); i++) {
+//          if (i < path.size()-1) {
+//            System.out.print(path.get(i) + ", ");
+//          }
+//          else {
+//            System.out.println(path.get(i) + ".");
+//          }
+//        }
       } catch (NullPointerException | NoSuchElementException | NumberFormatException e) {
         System.out.println("Invalid Input");
       }
-      System.out.println("Enter the location you want your order delivered to and the restaurant you are ordering from separated by spaces.");
+      System.out.println("Enter the location you want your order delivered to and the restaurant you are ordering from separated by spaces. Enter \"x\" to return to base mode.");
     }
     System.out.println("Here are the restaurants you can order from: ");
     for (int i = 0; i < restaurants.size(); i++) {
