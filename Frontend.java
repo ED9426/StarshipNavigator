@@ -66,21 +66,21 @@ public class Frontend implements FrontendInterface {
 
   public void runBaseMode() {
     String userInput = "";
-    System.out.println("Welcome to the Starship Ordering Service!");
-    System.out.println("Here are the restaurants you can order from: ");
-    for (int i = 0; i < restaurants.size(); i++) {
-      if (i < restaurants.size() - 1)
-        System.out.print(restaurants.get(i) + ", ");
-      else
-        System.out.println(restaurants.get(i));
-    }
-    System.out.println("Enter \"S\" to enter search location mode.");
-    System.out.println("Enter \"R\" to enter remove unwanted location mode.");
-    System.out.println("Enter \"A\" to enter add location mode.");
-    System.out.println("Enter \"E\" to enter expected time mode (cheapest option)");
-    System.out.println("Enter \"P\" to enter fastest path mode (most expensive option)");
-    System.out.println("Enter \"x\" to quit.");
     while (!userInput.equals("x")) {
+      System.out.println("Welcome to the Starship Ordering Service!");
+      System.out.println("Here are the restaurants you can order from: ");
+      for (int i = 0; i < restaurants.size(); i++) {
+        if (i < restaurants.size() - 1)
+          System.out.print(restaurants.get(i) + ", ");
+        else
+          System.out.println(restaurants.get(i));
+      }
+      System.out.println("Enter \"S\" to enter search location mode.");
+      System.out.println("Enter \"R\" to enter remove unwanted location mode.");
+      System.out.println("Enter \"A\" to enter add location mode.");
+      System.out.println("Enter \"E\" to enter expected time mode (cheapest option)");
+      System.out.println("Enter \"P\" to enter fastest path mode (most expensive option)");
+      System.out.println("Enter \"x\" to quit.");
       userInput = sc.next();
       if (userInput.equals("S") || userInput.equals("R") || userInput.equals("A")
           || userInput.equals("E") || userInput.equals("P")) {
@@ -269,6 +269,9 @@ public class Frontend implements FrontendInterface {
         dorm = userInput;
         userInput = sc.nextLine();
         restaurant = userInput;
+        if (restaurant.length()<=0) {
+          throw new NoSuchElementException();
+        }
         restaurant = restaurant.substring(1);
         if (!dormitories.contains(dorm) || !restaurants.contains(restaurant)) {
           throw new NoSuchElementException();
