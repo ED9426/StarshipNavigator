@@ -19,27 +19,37 @@ public class Frontend implements FrontendInterface {
       "Charter & University", "Charter & Johnson", "Observatory & Babcock", "Babcock & Tripp",
       "Babcock & Kronshage", "Observatory & Elm", "Elm & Kronshage", "Observatory & Willow",
       "Babcock & University"};
-  ArrayList<String> neighbors;
-  ArrayList<String> dormitories;
-  ArrayList<String> restaurants;
+  ArrayList<String> neighbors = new ArrayList<String>();
+  ArrayList<String> dormitories = new ArrayList<String>();
+  ArrayList<String> restaurants = new ArrayList<String>();
   String[] dorms = {"Adams", "Barnard", "Bradley", "Chadbourne", "Cole", "Davis", "Dejope",
       "Humphrey", "Jorns", "Kronshage", "Leopold", "Merit", "Ogg", "Phillips", "Sellery",
       "Slichter", "Smith", "Sullivan", "Tripp", "Waters", "Witte"};
   String[] rests = {"Carson's Market", "Four Lakes Market", "Gordon Avenue Market", "Liz's Market",
       "Rheta's Market", "Starbucks"};
   boolean[] neighborInd;
-  public Frontend() {
+  
+  public Frontend(FileReader fr) {
     this.sc = new Scanner(System.in);
-    Collections.addAll(dormitories, dorms);
-    Collections.addAll(restaurants, rests);
-    Collections.addAll(neighbors, neighborslist);
+    for (int i = 0 ; i < dorms.length; i++) {
+      dormitories.add(dorms[i]);
+    }
+    for (int i = 0 ; i < rests.length; i++) {
+      restaurants.add(rests[i]);
+    }
+    for (int i = 0 ; i < neighborslist.length; i++) {
+      neighbors.add(neighborslist[i]);
+    }
+    //Collections.addAll(restaurants, rests);
+    //Collections.addAll(neighbors, neighborslist);
+    neighborInd = new boolean[neighbors.size()];
   }
 
   public static void main(String[] args) throws FileNotFoundException {
     Backend backend;
     backend = new Backend(new FileReader(
-        "C:\\Users\\sudhi\\eclipse-workspace\\CityExplorer\\src\\Cost-of-living-2018.csv"));
-    Frontend ft = new Frontend();
+        "./starship.csv"));
+    Frontend ft = new Frontend(new FileReader("./starship.csv"));
     ft.run(backend);
   }
 
@@ -62,13 +72,13 @@ public class Frontend implements FrontendInterface {
       if (i < restaurants.size() - 1)
         System.out.print(restaurants.get(i) + ", ");
       else
-        System.out.print(restaurants.get(i));
+        System.out.println(restaurants.get(i));
     }
     System.out.println("Enter \"S\" to enter search location mode.");
     System.out.println("Enter \"R\" to enter remove unwanted location mode.");
     System.out.println("Enter \"A\" to enter add location mode.");
     System.out.println("Enter \"E\" to enter expected time mode");
-    System.out.println("Enter \"P\" to enter show path taken mode");
+    System.out.println("Enter \"P\" to enter cheapest path mode");
     System.out.println("Enter \"x\" to quit.");
     while (!userInput.equals("x")) {
       userInput = sc.next();
@@ -93,6 +103,7 @@ public class Frontend implements FrontendInterface {
 
   public void runSearchMode() {
     String userInput = "";
+    int count = 0;
     System.out.println(
         "Welcome to search location mode! Please enter the location you want to check is present. Enter \"x\" to return to base mode.");
     userInput = sc.next();
@@ -116,7 +127,19 @@ public class Frontend implements FrontendInterface {
           "Please enter the location you want to check is present. Enter \"x\" to return to base mode.");
       userInput = sc.next();
     }
-
+    System.out.println("Here are the restaurants you can order from: ");
+    for (int i = 0; i < restaurants.size(); i++) {
+      if (i < restaurants.size() - 1)
+        System.out.print(restaurants.get(i) + ", ");
+      else
+        System.out.println(restaurants.get(i));
+    }
+    System.out.println("Enter \"S\" to enter search location mode.");
+    System.out.println("Enter \"R\" to enter remove unwanted location mode.");
+    System.out.println("Enter \"A\" to enter add location mode.");
+    System.out.println("Enter \"E\" to enter expected time mode");
+    System.out.println("Enter \"P\" to enter cheapest path mode");
+    System.out.println("Enter \"x\" to quit.");
   }
 
   public void runRemoveMode() {
@@ -134,7 +157,10 @@ public class Frontend implements FrontendInterface {
       if (!dormitories.contains(location) && !restaurants.contains(location)) {
         System.out.println(location + " cannot be found.");
       } else if (this.backend.removeDorm(location)) {
-        System.out.println(location + "was successfully removed.");
+        System.out.println(location + " was successfully removed.");
+        dormitories.remove(location);
+        restaurants.remove(location);
+        neighbors.remove(location);
       } else {
         System.out.println(location + "could not be removed.");
       }
@@ -142,6 +168,19 @@ public class Frontend implements FrontendInterface {
           "Enter the location you would like to remove. Enter \"x\" to return to base mode.");
       userInput = sc.next();
     }
+    System.out.println("Here are the restaurants you can order from: ");
+    for (int i = 0; i < restaurants.size(); i++) {
+      if (i < restaurants.size() - 1)
+        System.out.print(restaurants.get(i) + ", ");
+      else
+        System.out.println(restaurants.get(i));
+    }
+    System.out.println("Enter \"S\" to enter search location mode.");
+    System.out.println("Enter \"R\" to enter remove unwanted location mode.");
+    System.out.println("Enter \"A\" to enter add location mode.");
+    System.out.println("Enter \"E\" to enter expected time mode");
+    System.out.println("Enter \"P\" to enter cheapest path mode");
+    System.out.println("Enter \"x\" to quit.");
   }
 
 
@@ -164,18 +203,38 @@ public class Frontend implements FrontendInterface {
         ArrayList<String> neightoadd = new ArrayList<>();
         ArrayList<Integer> weights = new ArrayList<Integer>();
         for (int i = 0; i < 7; i++) {
-          int temp = (int)(Math.random()*45 + 1);
-          neightoadd.set(i, neighbors.get(temp));
-          weights.set(i, (int)(Math.random()*10 + 1));
+          int temp = (int)(Math.random()*neighbors.size());
+          while (neighborInd[temp]) {
+            temp = (int)(Math.random()*neighbors.size());
+          }
+          neighborInd[temp] = true;
+          neightoadd.add(neighbors.get(temp));
+          weights.add((int)(Math.random()*10 + 1));
         }
         if (this.backend.addDorm(location, neightoadd, weights)) {
           System.out.println("Location successfully added!");
+          neighbors.add(location);
+          restaurants.add(location);
         } else {
           System.out.println("Location could not be added.");
         }
       }
       System.out.println("Enter the location you would like to add. Enter \"x\" to return to base mode.");
+      userInput = sc.next();
     }
+    System.out.println("Here are the restaurants you can order from: ");
+    for (int i = 0; i < restaurants.size(); i++) {
+      if (i < restaurants.size() - 1)
+        System.out.print(restaurants.get(i) + ", ");
+      else
+        System.out.println(restaurants.get(i));
+    }
+    System.out.println("Enter \"S\" to enter search location mode.");
+    System.out.println("Enter \"R\" to enter remove unwanted location mode.");
+    System.out.println("Enter \"A\" to enter add location mode.");
+    System.out.println("Enter \"E\" to enter expected time mode");
+    System.out.println("Enter \"P\" to enter cheapest path mode");
+    System.out.println("Enter \"x\" to quit.");
   }
 
   public void runExpectedTimeMode() {
@@ -188,17 +247,17 @@ public class Frontend implements FrontendInterface {
       if (i < restaurants.size() - 1)
         System.out.print(restaurants.get(i) + ", ");
       else
-        System.out.print(restaurants.get(i));
+        System.out.println(restaurants.get(i));
     }
     System.out.println("Here are the locations we support delivery to: ");
     for (int i = 0; i < dormitories.size(); i++) {
       if (i < dormitories.size() - 1)
         System.out.print(dormitories.get(i) + ", ");
       else
-        System.out.print(dormitories.get(i));
+        System.out.println(dormitories.get(i));
     }
     System.out.println(
-        "Enter the location you want your order delivered to and the restaurant you are ordering from separated by spaces.");
+        "Enter the location you want your order delivered to and the restaurant you are ordering from separated by spaces. Enter \"x\" to return to base mode.");
     while (!userInput.equals("x")) {
       userInput = sc.next();
       if (userInput.equals("x")) {
@@ -208,6 +267,7 @@ public class Frontend implements FrontendInterface {
         dorm = userInput;
         userInput = sc.nextLine();
         restaurant = userInput;
+        restaurant = restaurant.substring(1);
         if (!dormitories.contains(dorm) || !restaurants.contains(restaurant)) {
           throw new NoSuchElementException();
         }
@@ -215,19 +275,40 @@ public class Frontend implements FrontendInterface {
         String time = String.valueOf(backend.expectedTime(path));
         System.out.println("You order from " + restaurant + " will take " + time + " minutes.");
         System.out.print("The path taken will be: ");
-        for (int i = 0; i < path.size(); i++) {
-          if (i < path.size()-1) {
+        for (int i = path.size()-1; i >=0; i--) {
+          if (i != 0) {
             System.out.print(path.get(i) + ", ");
           }
           else {
-            System.out.print(path.get(i) + ".");
+            System.out.println(path.get(i) + ".");
           }
         }
+//        for (int i = 0; i < path.size(); i++) {
+//          if (i < path.size()-1) {
+//            System.out.print(path.get(i) + ", ");
+//          }
+//          else {
+//            System.out.println(path.get(i) + ".");
+//          }
+//        }
       } catch (NullPointerException | NoSuchElementException | NumberFormatException e) {
         System.out.println("Invalid Input");
       }
-      System.out.println("Enter the location you want your order delivered to and the restaurant you are ordering from separated by spaces.");
+      System.out.println("Enter the location you want your order delivered to and the restaurant you are ordering from separated by spaces. Enter \"x\" to return to base mode.");
     }
+    System.out.println("Here are the restaurants you can order from: ");
+    for (int i = 0; i < restaurants.size(); i++) {
+      if (i < restaurants.size() - 1)
+        System.out.print(restaurants.get(i) + ", ");
+      else
+        System.out.println(restaurants.get(i));
+    }
+    System.out.println("Enter \"S\" to enter search location mode.");
+    System.out.println("Enter \"R\" to enter remove unwanted location mode.");
+    System.out.println("Enter \"A\" to enter add location mode.");
+    System.out.println("Enter \"E\" to enter expected time mode");
+    System.out.println("Enter \"P\" to enter cheapest path mode");
+    System.out.println("Enter \"x\" to quit.");
   }
 
   public void runCheapestPathMode() {
@@ -240,17 +321,17 @@ public class Frontend implements FrontendInterface {
       if (i < restaurants.size() - 1)
         System.out.print(restaurants.get(i) + ", ");
       else
-        System.out.print(restaurants.get(i));
+        System.out.println(restaurants.get(i));
     }
     System.out.println("Here are the locations we support delivery to: ");
     for (int i = 0; i < dormitories.size(); i++) {
       if (i < dormitories.size() - 1)
         System.out.print(dormitories.get(i) + ", ");
       else
-        System.out.print(dormitories.get(i));
+        System.out.println(dormitories.get(i));
     }
     System.out.println(
-        "Enter the location you want your order delivered to and the restaurant you are ordering from separated by spaces.");
+        "Enter the location you want your order delivered to and the restaurant you are ordering from separated by spaces. Enter \"x\" to return to base mode.");
     while (!userInput.equals("x")) {
       userInput = sc.next();
       if (userInput.equals("x")) {
@@ -260,6 +341,7 @@ public class Frontend implements FrontendInterface {
         dorm = userInput;
         userInput = sc.nextLine();
         restaurant = userInput;
+        restaurant = restaurant.substring(1);
         if (!dormitories.contains(dorm) || !restaurants.contains(restaurant)) {
           throw new NoSuchElementException();
         }
@@ -267,18 +349,39 @@ public class Frontend implements FrontendInterface {
         String time = String.valueOf(path.size()*2);
         System.out.println("You order from " + restaurant + " will take " + time + " minutes.");
         System.out.print("The path taken will be: ");
-        for (int i = 0; i < path.size(); i++) {
-          if (i < path.size()-1) {
+        for (int i = path.size()-1; i >=0; i--) {
+          if (i != 0) {
             System.out.print(path.get(i) + ", ");
           }
           else {
-            System.out.print(path.get(i) + ".");
+            System.out.println(path.get(i) + ".");
           }
         }
+//        for (int i = 0; i < path.size(); i++) {
+//          if (i < path.size()-1) {
+//            System.out.print(path.get(i) + ", ");
+//          }
+//          else {
+//            System.out.println(path.get(i) + ".");
+//          }
+//        }
       } catch (NullPointerException | NoSuchElementException | NumberFormatException e) {
         System.out.println("Invalid Input");
       }
-      System.out.println("Enter the location you want your order delivered to and the restaurant you are ordering from separated by spaces.");
+      System.out.println("Enter the location you want your order delivered to and the restaurant you are ordering from separated by spaces. Enter \"x\" to return to base mode.");
     }
+    System.out.println("Here are the restaurants you can order from: ");
+    for (int i = 0; i < restaurants.size(); i++) {
+      if (i < restaurants.size() - 1)
+        System.out.print(restaurants.get(i) + ", ");
+      else
+        System.out.println(restaurants.get(i));
+    }
+    System.out.println("Enter \"S\" to enter search location mode.");
+    System.out.println("Enter \"R\" to enter remove unwanted location mode.");
+    System.out.println("Enter \"A\" to enter add location mode.");
+    System.out.println("Enter \"E\" to enter expected time mode");
+    System.out.println("Enter \"P\" to enter cheapest path mode");
+    System.out.println("Enter \"x\" to quit.");
   }
 }
