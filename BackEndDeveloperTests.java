@@ -78,7 +78,6 @@ public class BackEndDeveloperTests {
         weights.add(20);
         b.addDorm("Sheboygan", neighbors, weights);
         assertTrue(b.findCheapestDelivery("Adams", "Sheboygan").size() == 2);
-
         assertTrue(b.findCheapestDelivery("Cole", "Bradley").size() == 3);
     }
 

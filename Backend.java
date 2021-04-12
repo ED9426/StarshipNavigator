@@ -43,9 +43,6 @@ public class Backend implements BackendInterface{
         for (int i=0; i<data.size();i++) {
             for (int j= 0; j<data.get(i).connections.size(); j++) {
                 if (!data.get(i).connections.get(j).getName().equals(data.get(i).getName())) {  // avoid the self circling edge
-                    if (data.get(i).getName().equals("Cole")) {
-                        System.out.println(data.get(i).connections.get(j).getName());
-                    }
                     map.insertEdge(data.get(i).getName(),data.get(i).connections.get(j).getName(),data.get(i).weights.get(j));
                     map.insertEdge(data.get(i).connections.get(j).getName(),data.get(i).getName(),data.get(i).weights.get(j));
                 }
