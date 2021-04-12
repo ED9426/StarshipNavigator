@@ -78,7 +78,7 @@ public class Frontend implements FrontendInterface {
     System.out.println("Enter \"R\" to enter remove unwanted location mode.");
     System.out.println("Enter \"A\" to enter add location mode.");
     System.out.println("Enter \"E\" to enter expected time mode");
-    System.out.println("Enter \"P\" to enter show path taken mode");
+    System.out.println("Enter \"P\" to enter cheapest path mode");
     System.out.println("Enter \"x\" to quit.");
     while (!userInput.equals("x")) {
       userInput = sc.next();
@@ -138,7 +138,7 @@ public class Frontend implements FrontendInterface {
     System.out.println("Enter \"R\" to enter remove unwanted location mode.");
     System.out.println("Enter \"A\" to enter add location mode.");
     System.out.println("Enter \"E\" to enter expected time mode");
-    System.out.println("Enter \"P\" to enter show path taken mode");
+    System.out.println("Enter \"P\" to enter cheapest path mode");
     System.out.println("Enter \"x\" to quit.");
   }
 
@@ -179,7 +179,7 @@ public class Frontend implements FrontendInterface {
     System.out.println("Enter \"R\" to enter remove unwanted location mode.");
     System.out.println("Enter \"A\" to enter add location mode.");
     System.out.println("Enter \"E\" to enter expected time mode");
-    System.out.println("Enter \"P\" to enter show path taken mode");
+    System.out.println("Enter \"P\" to enter cheapest path mode");
     System.out.println("Enter \"x\" to quit.");
   }
 
@@ -233,7 +233,7 @@ public class Frontend implements FrontendInterface {
     System.out.println("Enter \"R\" to enter remove unwanted location mode.");
     System.out.println("Enter \"A\" to enter add location mode.");
     System.out.println("Enter \"E\" to enter expected time mode");
-    System.out.println("Enter \"P\" to enter show path taken mode");
+    System.out.println("Enter \"P\" to enter cheapest path mode");
     System.out.println("Enter \"x\" to quit.");
   }
 
@@ -257,7 +257,7 @@ public class Frontend implements FrontendInterface {
         System.out.println(dormitories.get(i));
     }
     System.out.println(
-        "Enter the location you want your order delivered to and the restaurant you are ordering from separated by spaces.");
+        "Enter the location you want your order delivered to and the restaurant you are ordering from separated by spaces. Enter \"x\" to return to base mode.");
     while (!userInput.equals("x")) {
       userInput = sc.next();
       if (userInput.equals("x")) {
@@ -286,7 +286,7 @@ public class Frontend implements FrontendInterface {
       } catch (NullPointerException | NoSuchElementException | NumberFormatException e) {
         System.out.println("Invalid Input");
       }
-      System.out.println("Enter the location you want your order delivered to and the restaurant you are ordering from separated by spaces.");
+      System.out.println("Enter the location you want your order delivered to and the restaurant you are ordering from separated by spaces. Enter \"x\" to return to base mode.");
     }
     System.out.println("Here are the restaurants you can order from: ");
     for (int i = 0; i < restaurants.size(); i++) {
@@ -299,7 +299,7 @@ public class Frontend implements FrontendInterface {
     System.out.println("Enter \"R\" to enter remove unwanted location mode.");
     System.out.println("Enter \"A\" to enter add location mode.");
     System.out.println("Enter \"E\" to enter expected time mode");
-    System.out.println("Enter \"P\" to enter show path taken mode");
+    System.out.println("Enter \"P\" to enter cheapest path mode");
     System.out.println("Enter \"x\" to quit.");
   }
 
@@ -323,7 +323,7 @@ public class Frontend implements FrontendInterface {
         System.out.println(dormitories.get(i));
     }
     System.out.println(
-        "Enter the location you want your order delivered to and the restaurant you are ordering from separated by spaces.");
+        "Enter the location you want your order delivered to and the restaurant you are ordering from separated by spaces. Enter \"x\" to return to base mode.");
     while (!userInput.equals("x")) {
       userInput = sc.next();
       if (userInput.equals("x")) {
@@ -333,6 +333,7 @@ public class Frontend implements FrontendInterface {
         dorm = userInput;
         userInput = sc.nextLine();
         restaurant = userInput;
+        restaurant = restaurant.substring(1);
         if (!dormitories.contains(dorm) || !restaurants.contains(restaurant)) {
           throw new NoSuchElementException();
         }
@@ -345,7 +346,7 @@ public class Frontend implements FrontendInterface {
             System.out.print(path.get(i) + ", ");
           }
           else {
-            System.out.print(path.get(i) + ".");
+            System.out.println(path.get(i) + ".");
           }
         }
       } catch (NullPointerException | NoSuchElementException | NumberFormatException e) {
@@ -364,7 +365,7 @@ public class Frontend implements FrontendInterface {
     System.out.println("Enter \"R\" to enter remove unwanted location mode.");
     System.out.println("Enter \"A\" to enter add location mode.");
     System.out.println("Enter \"E\" to enter expected time mode");
-    System.out.println("Enter \"P\" to enter show path taken mode");
+    System.out.println("Enter \"P\" to enter cheapest path mode");
     System.out.println("Enter \"x\" to quit.");
   }
 }
