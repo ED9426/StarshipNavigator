@@ -23,8 +23,9 @@ public class VertexDataReader implements VertexDataReaderInterface {
 				String[] values = line.split(","); // split data by comma
 				lines=lines+1;
 				for (int i=1; i<values.length-1; i++) {
-					if (!values[i].equals("")&&(lines!=26&&i!=44))
+					if (!values[i].equals("")) {//&&(lines!=26&&i!=44))
 						edges.get(lines).addConnection(edges.get(i-1), Integer.parseInt(values[i]));
+					}
 				}
 				edges.get(lines).setType(values[values.length-1]);
 			}
@@ -33,3 +34,4 @@ public class VertexDataReader implements VertexDataReaderInterface {
 		return edges;
 	}
 }
+
