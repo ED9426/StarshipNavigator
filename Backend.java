@@ -66,6 +66,12 @@ public class Backend implements BackendInterface{
         return false;
     }
 
+    /**
+     * @param a the dorm name for adding
+     * @param neighbors the neighbors name of the adding dorm
+     * @param weights the weight of the edge of the adding dorm and its neighbers
+     * @return
+     */
     @Override
     public boolean addDorm(String a, List<String> neighbors, List<Integer> weights) {
         if (map.containsVertex(a)) {
@@ -80,24 +86,40 @@ public class Backend implements BackendInterface{
         }
     }
 
+    /**
+     * @param a remove the dorm named "a" and its connections if it is inside the graph
+     * @return true if a is removed
+     */
     @Override
     public boolean removeDorm(String a) {
         return map.removeVertex(a);
 
     }
 
+    /**
+     * @param a,b a and b is the name of the two sides of the edge
+     * @return the the delivery route path with the minimal sum of the weights.
+     */
     @Override
     public List<String> findCheapestDelivery(String a, String b) {
         List<String> path = map.shortestPath(a,b);
         return path;
     }
 
+    /**
+     * @param a,b a and b is the name of the two sides of the edge
+     * @return the the delivery route path with the minimal number of the nodes along the path.
+     */
     @Override
     public List<String> findFastestDelivery(String a, String b) {
         List<String> path = map.BFSPath(a,b);
         return path;
     }
 
+    /**
+     * @param path the path that want to calculate the time
+     * @return the sum of the weights of the path
+     */
     @Override
     public int expectedTime(List<String> path) {
         int time = 0;

@@ -1,24 +1,22 @@
 BackEndDeveloper README for Project Three (CS400 @ UW Madison)
 ========================================================
-Name of BackEndDeveloper: <enter your complete name here>
-@wisc.edu Email of BackEndDeveloper: <enter your @wisc.edu email address here>
-Group: <enter your two letter group name here>
-Team: <enter your team color: red, blue, or purple, here>
+Name of BackEndDeveloper: HUI GENG
+@wisc.edu Email of FrontEndDeveloper: hgeng7@wisc.edu
+Group: GE
+Team: red
 Files Written by Me:
---------------------
-<List all files that were within this project that were written by you, and
- include a short description of the purpose that each file servers>
+-------------------------
+Backend : Perform a Backend for storing the data and sending the result to the frontend
+BackEndDeveloperTests :  Have 6 test part to test 6 functions of the backend
+BackendInterface : Show the main function of the backend that will do
+Graph : A modification on the CS400Graph with two more functions
+GraphADT : The ADT for the graph class
+
 Additional Contributions:
 -------------------------
-<List any additional contributions that you have made toward your team's
- completion of this project.  This might include, but is not limited to things
- like: organizing team communication, creating extra tests or dummy classes,
- assisting team members in any way, etc.>
+I usually set up the zoom meeting for weekly communication. I also assist others
+for debugging the code sometimes.
+
 Signature:
 ----------
-<Type out your full name here to certify that all of the files written by you
- that are listed above are the product of your individual development efforts
- for this programming assignment.  List below your name, any exceptions, for
- example: work reused from a previous semester, code examples taken from any
- website or book, or anything that was not explicitly authored by you for
- the purpose of completing this assigned CS400 project.>
+Hui Geng
