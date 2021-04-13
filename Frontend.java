@@ -66,8 +66,8 @@ public class Frontend implements FrontendInterface {
 
   public void runBaseMode() {
     String userInput = "";
+    System.out.println("Welcome to the Starship Ordering Service!");
     while (!userInput.equals("x")) {
-      System.out.println("Welcome to the Starship Ordering Service!");
       System.out.println("Here are the restaurants you can order from: ");
       for (int i = 0; i < restaurants.size(); i++) {
         if (i < restaurants.size() - 1)
@@ -136,12 +136,12 @@ public class Frontend implements FrontendInterface {
       else
         System.out.println(restaurants.get(i));
     }
-    System.out.println("Enter \"S\" to enter search location mode.");
-    System.out.println("Enter \"R\" to enter remove unwanted location mode.");
-    System.out.println("Enter \"A\" to enter add restaurant mode.");
-    System.out.println("Enter \"E\" to enter expected time mode (cheapest option)");
-    System.out.println("Enter \"P\" to enter fastest path mode (most expensive option)");
-    System.out.println("Enter \"x\" to quit.");
+//    System.out.println("Enter \"S\" to enter search location mode.");
+//    System.out.println("Enter \"R\" to enter remove unwanted location mode.");
+//    System.out.println("Enter \"A\" to enter add restaurant mode.");
+//    System.out.println("Enter \"E\" to enter expected time mode (cheapest option)");
+//    System.out.println("Enter \"P\" to enter fastest path mode (most expensive option)");
+//    System.out.println("Enter \"x\" to quit.");
   }
 
   public void runRemoveMode() {
@@ -177,12 +177,12 @@ public class Frontend implements FrontendInterface {
       else
         System.out.println(restaurants.get(i));
     }
-    System.out.println("Enter \"S\" to enter search location mode.");
-    System.out.println("Enter \"R\" to enter remove unwanted location mode.");
-    System.out.println("Enter \"A\" to enter add restaurant mode.");
-    System.out.println("Enter \"E\" to enter expected time mode (cheapest option)");
-    System.out.println("Enter \"P\" to enter fastest path mode (most expensive option)");
-    System.out.println("Enter \"x\" to quit.");
+//    System.out.println("Enter \"S\" to enter search location mode.");
+//    System.out.println("Enter \"R\" to enter remove unwanted location mode.");
+//    System.out.println("Enter \"A\" to enter add restaurant mode.");
+//    System.out.println("Enter \"E\" to enter expected time mode (cheapest option)");
+//    System.out.println("Enter \"P\" to enter fastest path mode (most expensive option)");
+//    System.out.println("Enter \"x\" to quit.");
   }
 
 
@@ -217,6 +217,7 @@ public class Frontend implements FrontendInterface {
           System.out.println("Location successfully added!");
           neighbors.add(location);
           restaurants.add(location);
+          neighborInd = new boolean[neighbors.size()];
         } else {
           System.out.println("Location could not be added.");
         }
@@ -231,12 +232,12 @@ public class Frontend implements FrontendInterface {
       else
         System.out.println(restaurants.get(i));
     }
-    System.out.println("Enter \"S\" to enter search location mode.");
-    System.out.println("Enter \"R\" to enter remove unwanted location mode.");
-    System.out.println("Enter \"A\" to enter add restaurant mode.");
-    System.out.println("Enter \"E\" to enter expected time mode (cheapest option)");
-    System.out.println("Enter \"P\" to enter fastest path mode (most expensive option)");
-    System.out.println("Enter \"x\" to quit.");
+//    System.out.println("Enter \"S\" to enter search location mode.");
+//    System.out.println("Enter \"R\" to enter remove unwanted location mode.");
+//    System.out.println("Enter \"A\" to enter add restaurant mode.");
+//    System.out.println("Enter \"E\" to enter expected time mode (cheapest option)");
+//    System.out.println("Enter \"P\" to enter fastest path mode (most expensive option)");
+//    System.out.println("Enter \"x\" to quit.");
   }
 
   public void runExpectedTimeMode() {
@@ -308,12 +309,12 @@ public class Frontend implements FrontendInterface {
       else
         System.out.println(restaurants.get(i));
     }
-    System.out.println("Enter \"S\" to enter search location mode.");
-    System.out.println("Enter \"R\" to enter remove unwanted location mode.");
-    System.out.println("Enter \"A\" to enter add restaurant mode.");
-    System.out.println("Enter \"E\" to enter expected time mode (cheapest option)");
-    System.out.println("Enter \"P\" to enter fastest path mode (most expensive option)");
-    System.out.println("Enter \"x\" to quit.");
+//    System.out.println("Enter \"S\" to enter search location mode.");
+//    System.out.println("Enter \"R\" to enter remove unwanted location mode.");
+//    System.out.println("Enter \"A\" to enter add restaurant mode.");
+//    System.out.println("Enter \"E\" to enter expected time mode (cheapest option)");
+//    System.out.println("Enter \"P\" to enter fastest path mode (most expensive option)");
+//    System.out.println("Enter \"x\" to quit.");
   }
 
   public void runFastestPathMode() {
@@ -382,11 +383,11 @@ public class Frontend implements FrontendInterface {
       else
         System.out.println(restaurants.get(i));
     }
-    System.out.println("Enter \"S\" to enter search location mode.");
-    System.out.println("Enter \"R\" to enter remove unwanted location mode.");
-    System.out.println("Enter \"A\" to enter add restaurant mode.");
-    System.out.println("Enter \"E\" to enter expected time mode (cheapest option)");
-    System.out.println("Enter \"P\" to enter fastest path mode (most expensive option)");
-    System.out.println("Enter \"x\" to quit.");
+//    System.out.println("Enter \"S\" to enter search location mode.");
+//    System.out.println("Enter \"R\" to enter remove unwanted location mode.");
+//    System.out.println("Enter \"A\" to enter add restaurant mode.");
+//    System.out.println("Enter \"E\" to enter expected time mode (cheapest option)");
+//    System.out.println("Enter \"P\" to enter fastest path mode (most expensive option)");
+//    System.out.println("Enter \"x\" to quit.");
   }
 }
