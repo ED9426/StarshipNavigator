@@ -1,3 +1,12 @@
+// --== CS400 File Header Information ==--
+// Name: Gahan Sudhir
+// Email: gsudhir@wisc.edu
+// Team: GE red
+// Role: Frontend developer
+// TA: Surabhi
+// Lecturer: Florian
+// Notes to Grader: <optional extra notes>
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -7,6 +16,10 @@ import java.util.NoSuchElementException;
 import java.util.Random;
 import java.util.Scanner;
 
+/**
+ * Provides an interface for the user to interact with the program
+ * @author gahan
+ */
 public class Frontend implements FrontendInterface {
   private Scanner sc;
   private Backend backend;
@@ -29,7 +42,10 @@ public class Frontend implements FrontendInterface {
       "Rheta's Market", "Starbucks"};
   boolean[] neighborInd;
   
-  public Frontend(FileReader fr) {
+  /**
+   * intializes the frontend to be run
+   */
+  public Frontend() {
     this.sc = new Scanner(System.in);
     for (int i = 0 ; i < dorms.length; i++) {
       dormitories.add(dorms[i]);
@@ -40,8 +56,6 @@ public class Frontend implements FrontendInterface {
     for (int i = 0 ; i < neighborslist.length; i++) {
       neighbors.add(neighborslist[i]);
     }
-    //Collections.addAll(restaurants, rests);
-    //Collections.addAll(neighbors, neighborslist);
     neighborInd = new boolean[neighbors.size()];
   }
 
@@ -49,10 +63,14 @@ public class Frontend implements FrontendInterface {
     Backend backend;
     backend = new Backend(new FileReader(
         "./starship.csv"));
-    Frontend ft = new Frontend(new FileReader("./starship.csv"));
+    Frontend ft = new Frontend();
     ft.run(backend);
   }
 
+  /**
+   * This function is used to start the frontend
+   * @param backend the backend used for storing and manipulating the city data.
+   */
   @Override
   public void run(Backend backend) {
     if (backend != null) {
@@ -64,6 +82,15 @@ public class Frontend implements FrontendInterface {
     }
   }
 
+  /**
+   * Basemode displays all the restaurant / dorms that can be ordered to/from
+   * Entering "S" runs the search mode
+   * Entering "R" runs the remove location mode
+   * Entering "A" runs the add restaurant mode
+   * Entering "E" runs the expected time mode
+   * Entering "P" runs the fastest path mode
+   * Entering "x" quits the program
+   */
   public void runBaseMode() {
     String userInput = "";
     System.out.println("Welcome to the Starship Ordering Service!");
@@ -104,6 +131,9 @@ public class Frontend implements FrontendInterface {
     }
   }
 
+  /**
+   * This method allows the user to search for existing dorms and restaurants to order to/from
+   */
   public void runSearchMode() {
     String userInput = "";
     System.out.println(
@@ -129,21 +159,11 @@ public class Frontend implements FrontendInterface {
           "Please enter the location you want to check is present. Enter \"x\" to return to base mode.");
       userInput = sc.next();
     }
-//    System.out.println("Here are the restaurants you can order from: ");
-//    for (int i = 0; i < restaurants.size(); i++) {
-//      if (i < restaurants.size() - 1)
-//        System.out.print(restaurants.get(i) + ", ");
-//      else
-//        System.out.println(restaurants.get(i));
-//    }
-//    System.out.println("Enter \"S\" to enter search location mode.");
-//    System.out.println("Enter \"R\" to enter remove unwanted location mode.");
-//    System.out.println("Enter \"A\" to enter add restaurant mode.");
-//    System.out.println("Enter \"E\" to enter expected time mode (cheapest option)");
-//    System.out.println("Enter \"P\" to enter fastest path mode (most expensive option)");
-//    System.out.println("Enter \"x\" to quit.");
   }
 
+  /**
+   * This method allows the user to delete any unwanted locations
+   */
   public void runRemoveMode() {
     String userInput = "";
     System.out.println("Welcome to remove location mode!");
@@ -170,22 +190,11 @@ public class Frontend implements FrontendInterface {
           "Enter the location you would like to remove. Enter \"x\" to return to base mode.");
       userInput = sc.next();
     }
-//    System.out.println("Here are the restaurants you can order from: ");
-//    for (int i = 0; i < restaurants.size(); i++) {
-//      if (i < restaurants.size() - 1)
-//        System.out.print(restaurants.get(i) + ", ");
-//      else
-//        System.out.println(restaurants.get(i));
-//    }
-//    System.out.println("Enter \"S\" to enter search location mode.");
-//    System.out.println("Enter \"R\" to enter remove unwanted location mode.");
-//    System.out.println("Enter \"A\" to enter add restaurant mode.");
-//    System.out.println("Enter \"E\" to enter expected time mode (cheapest option)");
-//    System.out.println("Enter \"P\" to enter fastest path mode (most expensive option)");
-//    System.out.println("Enter \"x\" to quit.");
   }
 
-
+  /**
+   * This method allows the user to add any restaurants he wants to order from
+   */
   public void runAddMode() {
     String userInput = "";
     System.out.println("Welcome to add location mode!");
@@ -225,21 +234,11 @@ public class Frontend implements FrontendInterface {
       System.out.println("Enter the location you would like to add. Enter \"x\" to return to base mode.");
       userInput = sc.next();
     }
-//    System.out.println("Here are the restaurants you can order from: ");
-//    for (int i = 0; i < restaurants.size(); i++) {
-//      if (i < restaurants.size() - 1)
-//        System.out.print(restaurants.get(i) + ", ");
-//      else
-//        System.out.println(restaurants.get(i));
-//    }
-//    System.out.println("Enter \"S\" to enter search location mode.");
-//    System.out.println("Enter \"R\" to enter remove unwanted location mode.");
-//    System.out.println("Enter \"A\" to enter add restaurant mode.");
-//    System.out.println("Enter \"E\" to enter expected time mode (cheapest option)");
-//    System.out.println("Enter \"P\" to enter fastest path mode (most expensive option)");
-//    System.out.println("Enter \"x\" to quit.");
   }
 
+  /**
+   * This method provides the path with the least total sum of weights (most time = cheapest)
+   */
   public void runExpectedTimeMode() {
     String userInput = "";
     String dorm = "";
@@ -289,34 +288,16 @@ public class Frontend implements FrontendInterface {
             System.out.println(path.get(i) + ".");
           }
         }
-//        for (int i = 0; i < path.size(); i++) {
-//          if (i < path.size()-1) {
-//            System.out.print(path.get(i) + ", ");
-//          }
-//          else {
-//            System.out.println(path.get(i) + ".");
-//          }
-//        }
       } catch (NullPointerException | NoSuchElementException | NumberFormatException e) {
         System.out.println("Invalid Input");
       }
       System.out.println("Enter the location you want your order delivered to and the restaurant you are ordering from separated by spaces. Enter \"x\" to return to base mode.");
     }
-//    System.out.println("Here are the restaurants you can order from: ");
-//    for (int i = 0; i < restaurants.size(); i++) {
-//      if (i < restaurants.size() - 1)
-//        System.out.print(restaurants.get(i) + ", ");
-//      else
-//        System.out.println(restaurants.get(i));
-//    }
-//    System.out.println("Enter \"S\" to enter search location mode.");
-//    System.out.println("Enter \"R\" to enter remove unwanted location mode.");
-//    System.out.println("Enter \"A\" to enter add restaurant mode.");
-//    System.out.println("Enter \"E\" to enter expected time mode (cheapest option)");
-//    System.out.println("Enter \"P\" to enter fastest path mode (most expensive option)");
-//    System.out.println("Enter \"x\" to quit.");
   }
 
+  /**
+   * This method chooses the path with the least number of edges (fastest = most expensive)
+   */
   public void runFastestPathMode() {
     String userInput = "";
     String dorm = "";
@@ -363,31 +344,10 @@ public class Frontend implements FrontendInterface {
             System.out.println(path.get(i) + ".");
           }
         }
-//        for (int i = 0; i < path.size(); i++) {
-//          if (i < path.size()-1) {
-//            System.out.print(path.get(i) + ", ");
-//          }
-//          else {
-//            System.out.println(path.get(i) + ".");
-//          }
-//        }
       } catch (NullPointerException | NoSuchElementException | NumberFormatException e) {
         System.out.println("Invalid Input");
       }
       System.out.println("Enter the location you want your order delivered to and the restaurant you are ordering from separated by spaces. Enter \"x\" to return to base mode.");
     }
-//    System.out.println("Here are the restaurants you can order from: ");
-//    for (int i = 0; i < restaurants.size(); i++) {
-//      if (i < restaurants.size() - 1)
-//        System.out.print(restaurants.get(i) + ", ");
-//      else
-//        System.out.println(restaurants.get(i));
-//    }
-//    System.out.println("Enter \"S\" to enter search location mode.");
-//    System.out.println("Enter \"R\" to enter remove unwanted location mode.");
-//    System.out.println("Enter \"A\" to enter add restaurant mode.");
-//    System.out.println("Enter \"E\" to enter expected time mode (cheapest option)");
-//    System.out.println("Enter \"P\" to enter fastest path mode (most expensive option)");
-//    System.out.println("Enter \"x\" to quit.");
   }
 }
