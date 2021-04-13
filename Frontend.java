@@ -77,13 +77,13 @@ public class Frontend implements FrontendInterface {
       }
       System.out.println("Enter \"S\" to enter search location mode.");
       System.out.println("Enter \"R\" to enter remove unwanted location mode.");
-      System.out.println("Enter \"A\" to enter add location mode.");
+      System.out.println("Enter \"A\" to enter add restaurant mode.");
       System.out.println("Enter \"E\" to enter expected time mode (cheapest option)");
       System.out.println("Enter \"P\" to enter fastest path mode (most expensive option)");
       System.out.println("Enter \"x\" to quit.");
       userInput = sc.next();
       if (userInput.equals("S") || userInput.equals("R") || userInput.equals("A")
-          || userInput.equals("E") || userInput.equals("P")) {
+          || userInput.equals("E") || userInput.equals("P") || userInput.equals("x")) {
         if (userInput.equals("S")) {
           runSearchMode();
         } else if (userInput.equals("R")) {
@@ -138,7 +138,7 @@ public class Frontend implements FrontendInterface {
     }
     System.out.println("Enter \"S\" to enter search location mode.");
     System.out.println("Enter \"R\" to enter remove unwanted location mode.");
-    System.out.println("Enter \"A\" to enter add location mode.");
+    System.out.println("Enter \"A\" to enter add restaurant mode.");
     System.out.println("Enter \"E\" to enter expected time mode (cheapest option)");
     System.out.println("Enter \"P\" to enter fastest path mode (most expensive option)");
     System.out.println("Enter \"x\" to quit.");
@@ -179,7 +179,7 @@ public class Frontend implements FrontendInterface {
     }
     System.out.println("Enter \"S\" to enter search location mode.");
     System.out.println("Enter \"R\" to enter remove unwanted location mode.");
-    System.out.println("Enter \"A\" to enter add location mode.");
+    System.out.println("Enter \"A\" to enter add restaurant mode.");
     System.out.println("Enter \"E\" to enter expected time mode (cheapest option)");
     System.out.println("Enter \"P\" to enter fastest path mode (most expensive option)");
     System.out.println("Enter \"x\" to quit.");
@@ -233,7 +233,7 @@ public class Frontend implements FrontendInterface {
     }
     System.out.println("Enter \"S\" to enter search location mode.");
     System.out.println("Enter \"R\" to enter remove unwanted location mode.");
-    System.out.println("Enter \"A\" to enter add location mode.");
+    System.out.println("Enter \"A\" to enter add restaurant mode.");
     System.out.println("Enter \"E\" to enter expected time mode (cheapest option)");
     System.out.println("Enter \"P\" to enter fastest path mode (most expensive option)");
     System.out.println("Enter \"x\" to quit.");
@@ -310,7 +310,7 @@ public class Frontend implements FrontendInterface {
     }
     System.out.println("Enter \"S\" to enter search location mode.");
     System.out.println("Enter \"R\" to enter remove unwanted location mode.");
-    System.out.println("Enter \"A\" to enter add location mode.");
+    System.out.println("Enter \"A\" to enter add restaurant mode.");
     System.out.println("Enter \"E\" to enter expected time mode (cheapest option)");
     System.out.println("Enter \"P\" to enter fastest path mode (most expensive option)");
     System.out.println("Enter \"x\" to quit.");
@@ -384,7 +384,7 @@ public class Frontend implements FrontendInterface {
     }
     System.out.println("Enter \"S\" to enter search location mode.");
     System.out.println("Enter \"R\" to enter remove unwanted location mode.");
-    System.out.println("Enter \"A\" to enter add location mode.");
+    System.out.println("Enter \"A\" to enter add restaurant mode.");
     System.out.println("Enter \"E\" to enter expected time mode (cheapest option)");
     System.out.println("Enter \"P\" to enter fastest path mode (most expensive option)");
     System.out.println("Enter \"x\" to quit.");
