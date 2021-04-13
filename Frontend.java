@@ -129,13 +129,13 @@ public class Frontend implements FrontendInterface {
           "Please enter the location you want to check is present. Enter \"x\" to return to base mode.");
       userInput = sc.next();
     }
-    System.out.println("Here are the restaurants you can order from: ");
-    for (int i = 0; i < restaurants.size(); i++) {
-      if (i < restaurants.size() - 1)
-        System.out.print(restaurants.get(i) + ", ");
-      else
-        System.out.println(restaurants.get(i));
-    }
+//    System.out.println("Here are the restaurants you can order from: ");
+//    for (int i = 0; i < restaurants.size(); i++) {
+//      if (i < restaurants.size() - 1)
+//        System.out.print(restaurants.get(i) + ", ");
+//      else
+//        System.out.println(restaurants.get(i));
+//    }
 //    System.out.println("Enter \"S\" to enter search location mode.");
 //    System.out.println("Enter \"R\" to enter remove unwanted location mode.");
 //    System.out.println("Enter \"A\" to enter add restaurant mode.");
@@ -170,13 +170,13 @@ public class Frontend implements FrontendInterface {
           "Enter the location you would like to remove. Enter \"x\" to return to base mode.");
       userInput = sc.next();
     }
-    System.out.println("Here are the restaurants you can order from: ");
-    for (int i = 0; i < restaurants.size(); i++) {
-      if (i < restaurants.size() - 1)
-        System.out.print(restaurants.get(i) + ", ");
-      else
-        System.out.println(restaurants.get(i));
-    }
+//    System.out.println("Here are the restaurants you can order from: ");
+//    for (int i = 0; i < restaurants.size(); i++) {
+//      if (i < restaurants.size() - 1)
+//        System.out.print(restaurants.get(i) + ", ");
+//      else
+//        System.out.println(restaurants.get(i));
+//    }
 //    System.out.println("Enter \"S\" to enter search location mode.");
 //    System.out.println("Enter \"R\" to enter remove unwanted location mode.");
 //    System.out.println("Enter \"A\" to enter add restaurant mode.");
@@ -225,13 +225,13 @@ public class Frontend implements FrontendInterface {
       System.out.println("Enter the location you would like to add. Enter \"x\" to return to base mode.");
       userInput = sc.next();
     }
-    System.out.println("Here are the restaurants you can order from: ");
-    for (int i = 0; i < restaurants.size(); i++) {
-      if (i < restaurants.size() - 1)
-        System.out.print(restaurants.get(i) + ", ");
-      else
-        System.out.println(restaurants.get(i));
-    }
+//    System.out.println("Here are the restaurants you can order from: ");
+//    for (int i = 0; i < restaurants.size(); i++) {
+//      if (i < restaurants.size() - 1)
+//        System.out.print(restaurants.get(i) + ", ");
+//      else
+//        System.out.println(restaurants.get(i));
+//    }
 //    System.out.println("Enter \"S\" to enter search location mode.");
 //    System.out.println("Enter \"R\" to enter remove unwanted location mode.");
 //    System.out.println("Enter \"A\" to enter add restaurant mode.");
@@ -302,13 +302,13 @@ public class Frontend implements FrontendInterface {
       }
       System.out.println("Enter the location you want your order delivered to and the restaurant you are ordering from separated by spaces. Enter \"x\" to return to base mode.");
     }
-    System.out.println("Here are the restaurants you can order from: ");
-    for (int i = 0; i < restaurants.size(); i++) {
-      if (i < restaurants.size() - 1)
-        System.out.print(restaurants.get(i) + ", ");
-      else
-        System.out.println(restaurants.get(i));
-    }
+//    System.out.println("Here are the restaurants you can order from: ");
+//    for (int i = 0; i < restaurants.size(); i++) {
+//      if (i < restaurants.size() - 1)
+//        System.out.print(restaurants.get(i) + ", ");
+//      else
+//        System.out.println(restaurants.get(i));
+//    }
 //    System.out.println("Enter \"S\" to enter search location mode.");
 //    System.out.println("Enter \"R\" to enter remove unwanted location mode.");
 //    System.out.println("Enter \"A\" to enter add restaurant mode.");
@@ -376,13 +376,13 @@ public class Frontend implements FrontendInterface {
       }
       System.out.println("Enter the location you want your order delivered to and the restaurant you are ordering from separated by spaces. Enter \"x\" to return to base mode.");
     }
-    System.out.println("Here are the restaurants you can order from: ");
-    for (int i = 0; i < restaurants.size(); i++) {
-      if (i < restaurants.size() - 1)
-        System.out.print(restaurants.get(i) + ", ");
-      else
-        System.out.println(restaurants.get(i));
-    }
+//    System.out.println("Here are the restaurants you can order from: ");
+//    for (int i = 0; i < restaurants.size(); i++) {
+//      if (i < restaurants.size() - 1)
+//        System.out.print(restaurants.get(i) + ", ");
+//      else
+//        System.out.println(restaurants.get(i));
+//    }
 //    System.out.println("Enter \"S\" to enter search location mode.");
 //    System.out.println("Enter \"R\" to enter remove unwanted location mode.");
 //    System.out.println("Enter \"A\" to enter add restaurant mode.");
