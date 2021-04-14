@@ -22,11 +22,14 @@
 import java.util.List;
 import org.junit.Test;
 import java.io.*;
-import static org.junit.Assert.*;
+//import static org.junit.Assert.*;
+import java.util.NoSuchElementException;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class FrontEndDeveloperTests {
+  public Frontend test;
   public void initEach() throws FileNotFoundException {
-    Frontend test = new Frontend();
+    test = new Frontend();
     test.run(new Backend(new FileReader("./starship.csv")));
 }
 
@@ -43,27 +46,27 @@ public void test1() {
         System.setIn(exit);
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
-        Frontend test = new Frontend();
+        test = new Frontend();
         test.run(new Backend(new FileReader("./starship.csv")));
-        System.setOut(standardOut);
-        System.setIn(standardIn);
         assertTrue(test != null);
     } catch (Exception e) {
+        fail("Exception thrown!");
         System.setOut(standardOut);
         System.setIn(standardIn);
         e.printStackTrace();
     }
 }
 
+
 /**
  * Test Frontend addition of restaurant
  */
 @Test
-public void test2() {
+public void test22() {
     PrintStream standardOut = System.out;
     InputStream standardIn = System.in;
     try {
-        String input = "A" +  System.lineSeparator() + "Panera Bread" + System.lineSeparator() + "x" + System.lineSeparator() + "S" + System.lineSeparator() + "Panera Bread";
+        String input = "A" +  System.lineSeparator() + "Panera Bread" + System.lineSeparator() + "x" + System.lineSeparator() + "S" + System.lineSeparator() + "Panera Bread" + System.lineSeparator() + "x" + System.lineSeparator() + "x";
         InputStream inputStreamSimulator = new ByteArrayInputStream(input.getBytes());
         System.setIn(inputStreamSimulator);
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -74,6 +77,7 @@ public void test2() {
         String Output = outputStream.toString();
         assertTrue(Output.contains("is present in the system"));
     } catch (Exception e) {
+        fail("Exception thrown!");
         System.setOut(standardOut);
         System.setIn(standardIn);
         e.printStackTrace();
@@ -88,7 +92,7 @@ public void test3() {
     PrintStream standardOut = System.out;
     InputStream standardIn = System.in;
     try {
-        String input = "E" +  System.lineSeparator() + "Adams Starbucks" + System.lineSeparator();
+        String input = "E" +  System.lineSeparator() + "Adams Starbucks" + System.lineSeparator() + "x" + System.lineSeparator() + "x";;
         InputStream inputStreamSimulator = new ByteArrayInputStream(input.getBytes());
         System.setIn(inputStreamSimulator);
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -99,6 +103,7 @@ public void test3() {
         String Output = outputStream.toString();
         assertTrue(Output.contains("will take 36 minutes") && Output.contains("Starbucks, ") && Output.contains("Adams."));
     } catch (Exception e) {
+      fail("Exception thrown!");
         System.setOut(standardOut);
         System.setIn(standardIn);
         e.printStackTrace();
@@ -113,7 +118,7 @@ public void test4() {
     PrintStream standardOut = System.out;
     InputStream standardIn = System.in;
     try {
-      String input = "P" +  System.lineSeparator() + "Adams Starbucks" + System.lineSeparator();
+      String input = "P" +  System.lineSeparator() + "Adams Starbucks" + System.lineSeparator() + "x" + System.lineSeparator() + "x";
       InputStream inputStreamSimulator = new ByteArrayInputStream(input.getBytes());
       System.setIn(inputStreamSimulator);
       ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -122,8 +127,9 @@ public void test4() {
       System.setOut(standardOut);
       System.setIn(standardIn);
       String Output = outputStream.toString();
-      assertTrue(Output.contains("will take 18 minutes") && Output.contains("Starbucks, Park & Observatory") && Output.contains("Adams."));
+      assertTrue(Output.contains("will take 18 minutes") && Output.contains("Starbucks, Park & Dayton") && Output.contains("Adams."));
     } catch (Exception e) {
+      fail("Exception thrown!");
         System.setOut(standardOut);
         System.setIn(standardIn);
         e.printStackTrace();
@@ -138,7 +144,7 @@ public void test5() {
     PrintStream standardOut = System.out;
     InputStream standardIn = System.in;
     try {
-      String input = "A" +  System.lineSeparator() + "Panera Bread" + System.lineSeparator() + "x" + System.lineSeparator() + "R" + System.lineSeparator() + "Panera Bread" + System.lineSeparator() + "x" + System.lineSeparator();
+      String input = "A" +  System.lineSeparator() + "Panera Bread" + System.lineSeparator() + "x" + System.lineSeparator() + "R" + System.lineSeparator() + "Panera Bread" + System.lineSeparator() + "x" + System.lineSeparator() + "x";
       InputStream inputStreamSimulator = new ByteArrayInputStream(input.getBytes());
       System.setIn(inputStreamSimulator);
       ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -147,8 +153,9 @@ public void test5() {
       System.setOut(standardOut);
       System.setIn(standardIn);
       String Output = outputStream.toString();
-      assertTrue(!Output.contains("Panera Bread"));
+      assertTrue(Output.contains("successfully removed"));
     } catch (Exception e) {
+      fail("Exception thrown!");
         System.setOut(standardOut);
         System.setIn(standardIn);
         e.printStackTrace();
