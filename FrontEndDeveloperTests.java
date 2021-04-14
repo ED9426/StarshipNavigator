@@ -29,7 +29,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class FrontEndDeveloperTests {
   public Frontend test;
   public void initEach() throws FileNotFoundException {
-    test = new Frontend();
+    Frontend test = new Frontend();
     test.run(new Backend(new FileReader("./starship.csv")));
 }
 
